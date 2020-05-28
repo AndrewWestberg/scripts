@@ -3,30 +3,28 @@
 #Please set the following variables to your needs, you can overwrite them dynamically
 #by placing a file with name "common.inc" in the calling directory. It will be sourced
 #into this file automatically if present
+socket="/home/westbam/haskell/local/db/socket"
 
-socket="db-mainnet/node.socket"
+genesisfile="/home/westbam/haskell/local/shelley-genesis.json"           #Shelley
+genesisfile_byron="/home/westbam/haskell/local/byron-genesis.json"       #Byron
 
-genesisfile="configuration-mainnet/mainnet-shelley-genesis.json"           #Shelley-Genesis path
-genesisfile_byron="configuration-mainnet/mainnet-byron-genesis.json"       #Byron-Genesis path
-
-cardanocli="./cardano-cli"	#Path to your cardano-cli you wanna use
-cardanonode="./cardano-node"	#Path to your cardano-node you wanna use
+cardanocli="/home/westbam/.local/bin/cardano-cli" #Path to your cardano-cli you wanna use
+cardanonode="/home/westbam/.local/bin/cardano-node" #Path to your cardano-node you wanna use
 
 magicparam="--mainnet"	#choose "--mainnet" for mainnet or for example "--testnet-magic 42" for a testnet
 addrformat="--mainnet"  #choose "--mainnet" for mainnet address format or like "--testnet-magic 42" for testnet address format
 
-itn_jcli="./jcli" #only needed if you wanna include your itn witness for your pool-ticker
-
+itn_jcli="/home/westbam/.cargo/bin/jcli" #only needed if you wanna include your itn witness for your pool-ticker
 
 #--------- leave this next value until you have to change it for a testnet
 byronToShelleyEpochs=208 #208 for the mainnet
 
 #--------- only for kes/opcert update and upload via scp -----
-remoteServerAddr="remoteserver address or ip"                       #RemoteServer ip or dns name
-remoteServerUser="remoteuser"                             #RemoteServer userlogin via ssh keys
-remoteServerSSHport="22"                                #RemoteServer SSH port number
-remoteServerDestDir="~/remoteuser/core-###NODENAME###/."           #Destination directory were to copy the files to
-remoteServerPostCommand="~/remoteuser/restartCore.sh"      #Command to execute via SSH after the file upload completed to restart the coreNode on the remoteServer
+remoteServerAddr="papa"             #RemoteServer ip or dns name
+remoteServerUser="westbam"              #RemoteServer userlogin via ssh keys
+remoteServerSSHport="15795"                 #RemoteServer SSH port number
+remoteServerDestDir="/home/westbam/haskell/${nodeName}/."       #Destination directory were to copy the files to
+remoteServerPostCommand="/home/westbam/haskell/restartNode.sh ${nodeName}"  #Command to execute via SSH after the file upload completed to restart the coreNode on the remoteServer
 
 
 ##############################################################################################################################

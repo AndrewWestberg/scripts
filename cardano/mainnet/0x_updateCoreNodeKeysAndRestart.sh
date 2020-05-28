@@ -2,6 +2,8 @@
 
 # Script is brought to you by ATADA_Stakepool, Telegram @atada_stakepool
 
+if [[ ! $1 == "" ]]; then nodeName=$1; else echo "ERROR - Usage: $0 <PoolNodeName>"; exit 2; fi
+
 #load variables from common.sh
 #       socket          Path to the node.socket (also exports socket to CARDANO_NODE_SOCKET_PATH)
 #       genesisfile     Path to the genesis.json
@@ -11,17 +13,14 @@
 #	remoteServerXXX Settings for the KES/OpCert update via SCP
 . "$(dirname "$0")"/00_common.sh
 
-if [[ ! $1 == "" ]]; then nodeName=$1; else echo "ERROR - Usage: $0 <PoolNodeName>"; exit 2; fi
-
-
+SCRIPTDIR=$(dirname "$0")
 
 #--  STEP 1  --------------------------------------------
 # Generate new KES Pair and a new OpCert for the coreNode
 #--------------------------------------------------------
+${SCRIPTDIR}/04c_genKESKeys.sh ${nodeName}
 
-./04c_genKESKeys.sh ${nodeName}
-
-./04d_genNodeOpCert.sh ${nodeName}
+${SCRIPTDIR}/04d_genNodeOpCert.sh ${nodeName}
 
 
 
@@ -39,11 +38,7 @@ nodeBaseName="$(basename ${nodeName})"  #grab the basename of the given PoolNode
 
 mkdir -p ./upload
 
-#unlock the files in the upload directory so they can be overwritten
-file_unlock ./upload/${nodeBaseName}.kes-expire.json
-file_unlock ./upload/${nodeBaseName}.kes.skey
-file_unlock ./upload/${nodeBaseName}.node.opcert
-file_unlock ./upload/${nodeBaseName}.vrf.skey
+rm -rf ./upload/*
 
 cp ./${nodeName}.kes-expire.json ./upload/${nodeBaseName}.kes-expire.json            #Copy latest KES expire information to automate alerts from the coreNode if needed
 cp ./${nodeName}.kes-${latestKESnumber}.skey ./upload/${nodeBaseName}.kes.skey       #Copy latest KES key over to fixed name nodeName.kes.skey
