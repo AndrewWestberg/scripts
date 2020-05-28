@@ -1,29 +1,25 @@
 #!/bin/bash
 
-socket="db-mainnet/node.socket"
+socket="/home/westbam/haskell/local/db/socket"
 
-genesisfile="configuration-mainnet/mainnet-shelley-genesis.json"           #Shelley
-genesisfile_byron="configuration-mainnet/mainnet-byron-genesis.json"       #Byron
+genesisfile="/home/westbam/haskell/local/shelley-genesis.json"           #Shelley
+genesisfile_byron="/home/westbam/haskell/local/byron-genesis.json"       #Byron
 
-cardanocli="./cardano-cli"
-cardanonode="./cardano-node"
+cardanocli="/home/westbam/.local/bin/cardano-cli"
+cardanonode="/home/westbam/.local/bin/cardano-node"
 
 byronToShelleyEpochs=208
 
 magicparam="--mainnet"
 
-itn_jcli="./jcli" #only needed if you wanna include your itn witness for your pool-ticker
-
-
-
+itn_jcli="/home/westbam/.cargo/bin/jcli" #only needed if you wanna include your itn witness for your pool-ticker
 
 #--------- only for kes/opcert update and upload via scp -----
-
-remoteServerAddr="remoteserver address or ip"                       #RemoteServer ip or dns name
-remoteServerUser="remoteuser"                             #RemoteServer userlogin via ssh keys
-remoteServerSSHport="22"                                #RemoteServer SSH port number
-remoteServerDestDir="~/remoteuser/core-###NODENAME###/."           #Destination directory were to copy the files to
-remoteServerPostCommand="~/remoteuser/restartCore.sh"      #Command to execute via SSH after the file upload completed to restart the coreNode on the remoteServer
+remoteServerAddr="papa"             #RemoteServer ip or dns name
+remoteServerUser="westbam"              #RemoteServer userlogin via ssh keys
+remoteServerSSHport="15795"                 #RemoteServer SSH port number
+remoteServerDestDir="/home/westbam/haskell/${nodeName}/."       #Destination directory were to copy the files to
+remoteServerPostCommand="/home/westbam/haskell/restartNode.sh ${nodeName}"  #Command to execute via SSH after the file upload completed to restart the coreNode on the remoteServer
 
 
 ##############################################################################################################################
@@ -35,7 +31,7 @@ remoteServerPostCommand="~/remoteuser/restartCore.sh"      #Command to execute v
 export CARDANO_NODE_SOCKET_PATH=${socket}
 
 #MainNet
-nodeVersionNeeded="1.19"
+nodeVersionNeeded="1.20"
 
 #-------------------------------------------------------------
 #Do a cli and node version check

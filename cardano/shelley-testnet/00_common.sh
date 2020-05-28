@@ -9,15 +9,14 @@ cardanonode="./cardano-node"
 
 magicparam="--testnet-magic 42"
 
-itn_jcli="./jcli" #only needed if you wanna include your itn witness for your pool-ticker
-
+itn_jcli="/home/westbam/.cargo/bin/jcli" #only needed if you wanna include your itn witness for your pool-ticker
 #--------- only for kes/opcert update and upload via scp -----
 
-remoteServerAddr="yourserver.com"                       #RemoteServer ip or dns name
-remoteServerUser="username"                             #RemoteServer userlogin via ssh keys
-remoteServerSSHport="22"                                #RemoteServer SSH port number
-remoteServerDestDir="~/cardano/config-core/."           #Destination directory were to copy the files to
-remoteServerPostCommand="~/cardano/restartCore.sh"      #Command to execute via SSH after the file upload completed to restart the coreNode on the remoteServer
+remoteServerAddr="papa" 			#RemoteServer ip or dns name
+remoteServerUser="westbam" 				#RemoteServer userlogin via ssh keys
+remoteServerSSHport="15795" 				#RemoteServer SSH port number
+remoteServerDestDir="/home/westbam/haskell/${nodeName}/." 		#Destination directory were to copy the files to
+remoteServerPostCommand="/home/westbam/haskell/restartNode.sh ${nodeName}"	#Command to execute via SSH after the file upload completed to restart the coreNode on the remoteServer
 
 
 ##############################################################################################################################
