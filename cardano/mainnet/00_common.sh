@@ -1,16 +1,16 @@
 #!/bin/bash
 
-socket="/home/westbam/haskell/local/db/socket"
+socket="/home/westbam/haskell/test/db/socket"
 
-genesisfile="/home/westbam/haskell/local/shelley-genesis.json"           #Shelley
-genesisfile_byron="/home/westbam/haskell/local/byron-genesis.json"       #Byron
+genesisfile="/home/westbam/haskell/test/shelley-genesis.json"           #Shelley
+genesisfile_byron="/home/westbam/haskell/test/byron-genesis.json"       #Byron
 
 cardanocli="/home/westbam/.local/bin/cardano-cli"
 cardanonode="/home/westbam/.local/bin/cardano-node"
 
 byronToShelleyEpochs=208
 
-magicparam="--mainnet"
+magicparam="--testnet-magic 1097911063"
 
 itn_jcli="/home/westbam/.cargo/bin/jcli" #only needed if you wanna include your itn witness for your pool-ticker
 
@@ -68,7 +68,7 @@ tempDir=$(dirname $(mktemp tmp.XXXX -ut))
 
 
 #Dummy Shelley Payment_Addr
-dummyShelleyAddr="addr1vyde3cg6cccdzxf4szzpswgz53p8m3r4hu76j3zw0tagyvgdy3s4p"
+dummyShelleyAddr="addr_test1vrdqad0dwcg5stk9pzdknkrsurzkc8z9rqp9vyfrnrsgxkc4r8za2"
 
 #AddressType check
 
